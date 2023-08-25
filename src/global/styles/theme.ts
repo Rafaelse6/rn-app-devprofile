@@ -14,6 +14,6 @@ export default {
   },
   fonts: {
     regular: "Roboto_400Regular",
-    bold: " Roboto_700Bold",
+    bold: "Roboto_700Bold",
   },
 };

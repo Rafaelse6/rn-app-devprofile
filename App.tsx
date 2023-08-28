@@ -1,6 +1,5 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { Home } from "./src/pages/Home";
 import theme from "./src/global/styles/theme";
 import * as SplashScreen from "expo-splash-screen";
 import {
@@ -8,6 +7,7 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
+import { SignIn } from "./src/pages/SignIn";
 
 const App: React.FunctionComponent = () => {
   SplashScreen.preventAutoHideAsync();
@@ -25,7 +25,7 @@ const App: React.FunctionComponent = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <SignIn />
     </ThemeProvider>
   );
 };

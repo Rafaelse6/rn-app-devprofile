@@ -2,6 +2,8 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import theme from "./src/global/styles/theme";
 import * as SplashScreen from "expo-splash-screen";
+import { NavigationContainer } from "@react-navigation/native";
+
 import {
   useFonts,
   Roboto_400Regular,
@@ -24,9 +26,11 @@ const App: React.FunctionComponent = () => {
   SplashScreen.hideAsync();
 
   return (
-    <ThemeProvider theme={theme}>
-      <SignUp />
-    </ThemeProvider>
+    <NavigationContainer>
+      <ThemeProvider theme={theme}>
+        <SignUp />
+      </ThemeProvider>
+    </NavigationContainer>
   );
 };
 

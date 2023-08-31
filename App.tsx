@@ -9,7 +9,7 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
-import { SignUp } from "./src/pages/SignUp/Index";
+import { Routes } from "./src/routes";
 
 const App: React.FunctionComponent = () => {
   SplashScreen.preventAutoHideAsync();
@@ -28,7 +28,7 @@ const App: React.FunctionComponent = () => {
   return (
     <NavigationContainer>
       <ThemeProvider theme={theme}>
-        <SignUp />
+        <Routes />
       </ThemeProvider>
     </NavigationContainer>
   );

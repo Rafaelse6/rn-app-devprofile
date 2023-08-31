@@ -24,3 +24,9 @@ export const Title = styled.Text`
   color: ${(props: { theme: { colors: { light: string } } }) =>
     props.theme.colors.light};
 `;
+
+export const Logo = styled.Image`
+  width: ${RFValue(160)}px;
+  height: ${RFValue(160)}px;
+  margin-bottom: ${RFValue(64)}px;
+`;

@@ -1,4 +1,13 @@
 import React from "react";
+import { ScrollView, KeyboardAvoidingView, Platform, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Button } from "../../components/Form/Button/Index";
+import logo from "../../assets/logo.png";
+import { useForm, FieldValues } from "react-hook-form";
+import { InputControl } from "../../components/Form/InputControl";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 import {
   Container,
   Content,
@@ -10,12 +19,6 @@ import {
   Icon,
   CreateAccountTitle,
 } from "./styles";
-import { ScrollView, KeyboardAvoidingView, Platform, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Button } from "../../components/Form/Button/Index";
-import logo from "../../assets/logo.png";
-import { useForm, FieldValues } from "react-hook-form";
-import { InputControl } from "../../components/Form/InputControl";
 
 interface ScreenNavigationProp {
   navigate: (screen: string) => void;
@@ -25,8 +28,19 @@ interface IFormInputs {
   [name: string]: any;
 }
 
+const formSchema = yup.object({
+  email: yup.string().email("Email inválido.").required("Informe o email."),
+  password: yup.string().required("Informe a senha."),
+});
+
 export const SignIn: React.FunctionComponent = () => {
-  const { handleSubmit, control } = useForm<FieldValues>();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    resolver: yupResolver(formSchema),
+  });
 
   const { navigate } = useNavigation<ScreenNavigationProp>();
 
@@ -62,6 +76,7 @@ export const SignIn: React.FunctionComponent = () => {
               name="email"
               placeholder="Email"
               keyboardType="email-address"
+              error={errors.email && errors.email.message?.toString()}
             />
             <InputControl
               control={control}
@@ -69,6 +84,7 @@ export const SignIn: React.FunctionComponent = () => {
               placeholder="Senha"
               autoCorrect={false}
               secureTextEntry
+              error={errors.email && errors.email.message?.toString()}
             />
 
             <Button title="Entrar" onPress={handleSubmit(handleSignIn)} />

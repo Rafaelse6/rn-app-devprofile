@@ -84,7 +84,7 @@ export const SignIn: React.FunctionComponent = () => {
               placeholder="Senha"
               autoCorrect={false}
               secureTextEntry
-              error={errors.email && errors.email.message?.toString()}
+              error={errors.password && errors.password.message?.toString()}
             />
 
             <Button title="Entrar" onPress={handleSubmit(handleSignIn)} />

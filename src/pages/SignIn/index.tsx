@@ -19,6 +19,7 @@ import {
   Icon,
   CreateAccountTitle,
 } from "./styles";
+import { AuthContext } from "../../context/AuthContext";
 
 interface ScreenNavigationProp {
   navigate: (screen: string) => void;
@@ -34,6 +35,9 @@ const formSchema = yup.object({
 });
 
 export const SignIn: React.FunctionComponent = () => {
+  const auth = React.useContext(AuthContext);
+  console.log(auth);
+
   const {
     handleSubmit,
     control,

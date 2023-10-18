@@ -10,7 +10,7 @@ import {
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
 import { Routes } from "./src/routes";
-import { AuthContext } from "./src/context/AuthContext";
+import { AuthProvider } from "./src/context/AuthContext";
 
 const App: React.FunctionComponent = () => {
   SplashScreen.preventAutoHideAsync();
@@ -29,9 +29,9 @@ const App: React.FunctionComponent = () => {
   return (
     <NavigationContainer>
       <ThemeProvider theme={theme}>
-        <AuthContext.Provider value={{ name: "Jorge" }}>
+        <AuthProvider>
           <Routes />
-        </AuthContext.Provider>
+        </AuthProvider>
       </ThemeProvider>
     </NavigationContainer>
   );

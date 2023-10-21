@@ -20,6 +20,7 @@ import {
   CreateAccountTitle,
 } from "./styles";
 import { AuthContext } from "../../context/AuthContext";
+import { Alert } from "react-native";
 
 interface ScreenNavigationProp {
   navigate: (screen: string) => void;
@@ -35,9 +36,8 @@ const formSchema = yup.object({
 });
 
 export const SignIn: React.FunctionComponent = () => {
-  const auth = React.useContext(AuthContext);
+  const { signIn } = React.useContext(AuthContext);
   const [loading, setLoading] = React.useState(false);
-  console.log(auth);
 
   const {
     handleSubmit,
@@ -54,8 +54,16 @@ export const SignIn: React.FunctionComponent = () => {
       email: form.email,
       password: form.password,
     };
-    setLoading(true);
-    auth.signIn();
+
+    try {
+      setLoading(true);
+      signIn(data);
+    } catch (error) {
+      Alert.alert(
+        "Erro na autenticação",
+        "Ocorreu um erro ao fazer login, verifique as credenciais",
+      );
+    }
   };
 
   return (

@@ -19,7 +19,7 @@ import {
   Icon,
   CreateAccountTitle,
 } from "./styles";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Alert } from "react-native";
 
 interface ScreenNavigationProp {
@@ -36,7 +36,7 @@ const formSchema = yup.object({
 });
 
 export const SignIn: React.FunctionComponent = () => {
-  const { signIn } = React.useContext(AuthContext);
+  const { signIn } = useAuth();
   const [loading, setLoading] = React.useState(false);
 
   const {

@@ -68,3 +68,5 @@ export const Icon = styled(Feather)`
   color: ${(props: { theme: { colors: { dark: string } } }) =>
     props.theme.colors.dark};
 `;
+
+export const LogoutButton = styled.TouchableOpacity``;

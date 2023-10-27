@@ -12,21 +12,29 @@ import {
   UserEmailDetail,
   UserNameDetail,
 } from "./styles";
+import { IUser } from "../../model/user";
 
-export const User: React.FunctionComponent = () => {
+interface UserProps {
+  data: IUser;
+  onPress: () => void;
+}
+
+export const User: React.FunctionComponent<UserProps> = ({ data, onPress }) => {
   return (
-    <Container>
+    <Container onPress={onPress}>
       <UserDetail>
         <UserNameDetail>
           <NameTitle>NAME</NameTitle>
-          <NameData>Aluizio Developer</NameData>
+          <NameData>{data.name}</NameData>
         </UserNameDetail>
         <UserEmailDetail>
-          <EmailTitle>EMAIL</EmailTitle>
+          <EmailTitle>{data.email}</EmailTitle>
           <EmailData>aluiziodeveloper@gmail.com</EmailData>
         </UserEmailDetail>
       </UserDetail>
-      <UserAvatar source={avatarDefault} />
+      <UserAvatar
+        source={data.avatar_url ? { uri: data.avatar_url } : avatarDefault}
+      />
     </Container>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   Container,
   Header,
@@ -23,9 +24,14 @@ import { IUser } from "../../model/user";
 import { api } from "../../services/api";
 import { User } from "../../components/User";
 
+interface ScreenNavigationProp {
+  navigate: (screen: string, params?: unknown) => void;
+}
+
 export const Home: React.FunctionComponent = () => {
   const [users, setUsers] = React.useState<IUser[]>([]);
   const { user, signOut } = useAuth();
+  const { navigate } = useNavigation<ScreenNavigationProp>();
 
   React.useEffect(() => {
     const loadUsers = async () => {
@@ -46,6 +52,10 @@ export const Home: React.FunctionComponent = () => {
         onPress: () => signOut(),
       },
     ]);
+  };
+
+  const handleUserDetails = (userId: string) => {
+    navigate("UserDetails", { userId });
   };
 
   return (
@@ -74,7 +84,7 @@ export const Home: React.FunctionComponent = () => {
         data={users}
         keyExtractor={(item: { id: any }) => item.id}
         renderItem={({ item }: { item: any }) => (
-          <User data={item} onPress={() => {}} />
+          <User data={item} onPress={() => handleUserDetails(item.id)} />
         )}
         ListHeaderComponent={<UserListHeader>Usuários</UserListHeader>}
         ListEmptyComponent={

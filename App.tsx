@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "./src/global/styles/theme";
 import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import {
   useFonts,
@@ -28,14 +29,16 @@ const App: React.FunctionComponent = () => {
   SplashScreen.hideAsync();
 
   return (
-    <NavigationContainer>
-      <StatusBar backgroundColor="transparent" translucent />
-      <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Routes />
-        </AuthProvider>
-      </ThemeProvider>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <StatusBar backgroundColor="transparent" translucent />
+        <ThemeProvider theme={theme}>
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
+        </ThemeProvider>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 };
 

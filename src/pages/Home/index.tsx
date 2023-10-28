@@ -9,6 +9,9 @@ import {
   UserGreeting,
   UserInfo,
   UserInfoDetail,
+  UserList,
+  UserListEmpty,
+  UserListHeader,
   UserName,
   UserWrapper,
 } from "./styles";
@@ -18,6 +21,7 @@ import { useAuth } from "../../context/AuthContext";
 import { Alert } from "react-native";
 import { IUser } from "../../model/user";
 import { api } from "../../services/api";
+import { User } from "../../components/User";
 
 export const Home: React.FunctionComponent = () => {
   const [users, setUsers] = React.useState<IUser[]>([]);
@@ -30,8 +34,6 @@ export const Home: React.FunctionComponent = () => {
     };
     loadUsers();
   }, []);
-
-  console.log(users);
 
   const handleSignOut = () => {
     Alert.alert("Tem certeza ?", "Deseja realmente sair da aplicação ?", [
@@ -68,6 +70,17 @@ export const Home: React.FunctionComponent = () => {
           </LogoutButton>
         </UserWrapper>
       </Header>
+      <UserList
+        data={users}
+        keyExtractor={(item: { id: any }) => item.id}
+        renderItem={({ item }: { item: any }) => (
+          <User data={item} onPress={() => {}} />
+        )}
+        ListHeaderComponent={<UserListHeader>Usuários</UserListHeader>}
+        ListEmptyComponent={
+          <UserListEmpty>Ops! Ainda não há registros.</UserListEmpty>
+        }
+      />
     </Container>
   );
 };

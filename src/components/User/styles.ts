@@ -1,7 +1,8 @@
+import { RectButton } from "react-native-gesture-handler";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled(RectButton)`
   width: 100%;
   height: ${RFValue(100)}px;
   background-color: ${(props: { theme: { colors: { gray800: string } } }) =>
@@ -49,7 +50,7 @@ export const EmailTitle = styled.Text`
   text-transform: uppercase;
 `;
 
-export const EmailData = styled.View`
+export const EmailData = styled.Text`
   font-family: ${(props: { theme: { fonts: { regular: string } } }) =>
     props.theme.fonts.regular};
   color: ${(props: { theme: { colors: { light: string } } }) =>

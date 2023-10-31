@@ -10,16 +10,17 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  height: ${RFPercentage(16)}px;
+  height: ${RFPercentage(28)}px;
   background-color: ${(props: { theme: { colors: { secondary: string } } }) =>
     props.theme.colors.secondary};
-  justify-content: center;
+`;
+
+export const HeaderTop = styled.View`
+  width: 100%;
   align-items: center;
   flex-direction: row;
   padding: ${RFValue(48)}px ${RFValue(24)}px ${RFValue(8)}px;
 `;
-
-export const HeaderTop = styled.View``;
 
 export const GoBackButton = styled.TouchableOpacity`
   margin-right: ${RFValue(16)}px;
@@ -39,21 +40,37 @@ export const HeaderTile = styled.Text`
   font-weight: bold;
 `;
 
-export const PhotoContainer = styled.View``;
+export const PhotoContainer = styled.View`
+  width: ${RFValue(120)}px;
+  height: ${RFValue(120)}px;
+  border-radius: 10px;
+  margin: ${RFValue(48)}px auto;
+`;
 
 export const UserAvatar = styled.Image`
-  width: ${RFValue(48)}px;
-  height: ${RFValue(48)}px;
+  width: ${RFValue(120)}px;
+  height: ${RFValue(120)}px;
   border-radius: 10px;
   margin-left: auto;
 `;
 
-export const PhotoButton = styled.View``;
+export const PhotoButton = styled.View`
+  background-color: ${(props: { theme: { colors: { danger: string } } }) =>
+    props.theme.colors.danger};
+  width: ${RFValue(42)}px;
+  height: ${RFValue(42)}px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: ${RFValue(-16)}px;
+  right: ${RFValue(-16)}px;
+`;
 
 export const Content = styled.View`
   flex: 1;
-  justify-content: space-around;
   padding: ${RFValue(48)}px ${RFValue(24)}px;
+  margin-top: ${RFValue(64)}px;
 `;
 
 export const UserNameDetail = styled.View`
@@ -61,14 +78,15 @@ export const UserNameDetail = styled.View`
     props.theme.colors.gray800};
   padding: ${RFValue(16)}px ${RFValue(24)}px;
   border-radius: 10px;
+  margin-bottom: 16px;
 `;
 
 export const NameTitle = styled.Text`
-  font-family: ${(props: { theme: { fonts: { regular: string } } }) =>
-    props.theme.fonts.regular};
-  font-size: ${RFValue(12)}px;
   color: ${(props: { theme: { colors: { light: string } } }) =>
     props.theme.colors.light};
+  font-size: ${RFValue(12)}px;
+  font-family: ${(props: { theme: { fonts: { regular: string } } }) =>
+    props.theme.fonts.regular};
   text-transform: uppercase;
 `;
 

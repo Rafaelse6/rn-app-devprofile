@@ -20,6 +20,7 @@ import {
 } from "./styles";
 import { useAuth } from "../../context/AuthContext";
 import avatarDefault from "../../assets/avatar02.png";
+import { Button } from "../../components/Form/Button/Index";
 
 interface ScreenNavigationProp {
   goBack: () => void;
@@ -36,8 +37,9 @@ export const UserProfile: React.FunctionComponent = () => {
           <GoBackButton onPress={goBack}>
             <Icon name="chevron-left" />
           </GoBackButton>
+          <HeaderTile>Seu Perfil</HeaderTile>
         </HeaderTop>
-        <HeaderTile>Seu Perfil</HeaderTile>
+
         <PhotoContainer>
           <UserAvatar
             source={user.avatar_url ? { uri: user.avatar_url } : avatarDefault}
@@ -58,6 +60,8 @@ export const UserProfile: React.FunctionComponent = () => {
           <EmailTitle>EMAIL</EmailTitle>
           <EmailData>{user.email}</EmailData>
         </UserEmailDetail>
+        <Button title="Editar dados do perfil" onPress={() => {}} />
+        <Button title="Trocar senha" onPress={() => {}} />
       </Content>
     </Container>
   );

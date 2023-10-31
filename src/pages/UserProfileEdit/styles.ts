@@ -10,13 +10,10 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  height: ${RFPercentage(28)}px;
+  height: ${RFPercentage(16)}px;
   background-color: ${(props: { theme: { colors: { secondary: string } } }) =>
     props.theme.colors.secondary};
-`;
-
-export const HeaderTop = styled.View`
-  width: 100%;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   padding: ${RFValue(48)}px ${RFValue(24)}px ${RFValue(8)}px;
@@ -26,7 +23,7 @@ export const GoBackButton = styled.TouchableOpacity`
   margin-right: ${RFValue(16)}px;
 `;
 
-export const HeaderTile = styled.Text`
+export const HeaderTitle = styled.Text`
   color: ${(props: { theme: { colors: { gray800: string } } }) =>
     props.theme.colors.gray800};
   font-size: ${RFValue(18)}px;
@@ -35,16 +32,9 @@ export const HeaderTile = styled.Text`
   font-weight: bold;
 `;
 
-export const PhotoContainer = styled.View`
-  width: ${RFValue(120)}px;
-  height: ${RFValue(120)}px;
-  border-radius: 10px;
-  margin: ${RFValue(48)}px auto;
-`;
-
 export const UserAvatar = styled.Image`
-  width: ${RFValue(120)}px;
-  height: ${RFValue(120)}px;
+  width: ${RFValue(48)}px;
+  height: ${RFValue(48)}px;
   border-radius: 10px;
   margin-left: auto;
 `;
@@ -59,12 +49,11 @@ export const Content = styled.View`
 
 export const Title = styled.Text`
   font-size: ${RFValue(18)}px;
-  margin-bottom: 24px;
-
   font-family: ${(props: { theme: { fonts: { regular: string } } }) =>
     props.theme.fonts.regular};
   color: ${(props: { theme: { colors: { light: string } } }) =>
     props.theme.colors.light};
+  margin-bottom: 24px;
 `;
 
 export const Logo = styled.Image`
@@ -74,9 +63,9 @@ export const Logo = styled.Image`
 `;
 
 export const Icon = styled(Feather)`
-  font-size: ${RFValue(20)}px;
-  color: ${(props: { theme: { colors: { primary: string } } }) =>
-    props.theme.colors.primary};
+  font-size: ${RFValue(24)}px;
+  color: ${(props: { theme: { colors: { gray800: string } } }) =>
+    props.theme.colors.gray800};
 `;
 
 export const BackToSignIn = styled.TouchableOpacity`

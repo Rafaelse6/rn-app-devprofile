@@ -5,29 +5,26 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Button } from "../../components/Form/Button/Index";
-import logo from "../../assets/logo.png";
-import { InputControl } from "../../components/Form/InputControl";
 import { useForm, FieldValues } from "react-hook-form";
+import { useNavigation } from "@react-navigation/native";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 import { api } from "../../services/api";
+import { InputControl } from "../../components/Form/InputControl";
 import {
   Container,
   Content,
   GoBackButton,
   Header,
-  HeaderTile,
-  HeaderTop,
+  HeaderTitle,
   Icon,
-  Logo,
-  PhotoContainer,
   Title,
   UserAvatar,
 } from "./styles";
 import { useAuth } from "../../context/AuthContext";
 import avatarDefault from "../../assets/avatar02.png";
+import { Button } from "../../components/Form/Button/Index";
 
 interface ScreenNavigationProp {
   goBack: () => void;
@@ -38,19 +35,22 @@ interface IFormInputs {
 }
 
 const formSchema = yup.object({
-  name: yup.string().required("Informe o noem completo"),
+  name: yup.string().required("Informe o nome completo."),
   email: yup.string().email("Email inválido.").required("Informe o email."),
 });
 
 export const UserProfileEdit: React.FunctionComponent = () => {
   const { user } = useAuth();
-
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<FieldValues>({
     resolver: yupResolver(formSchema),
+    defaultValues: {
+      name: user.name,
+      email: user.email,
+    },
   });
 
   const { goBack } = useNavigation<ScreenNavigationProp>();
@@ -65,7 +65,7 @@ export const UserProfileEdit: React.FunctionComponent = () => {
       await api.put("profile", data);
       Alert.alert(
         "Perfil atualizado",
-        "Os dados do seu perfil foram atualizados",
+        "Os dados do seu perfil foram atualizados.",
       );
       goBack();
     } catch (error) {
@@ -75,6 +75,7 @@ export const UserProfileEdit: React.FunctionComponent = () => {
       );
     }
   };
+
   return (
     <KeyboardAvoidingView
       enabled
@@ -87,23 +88,17 @@ export const UserProfileEdit: React.FunctionComponent = () => {
       >
         <Container>
           <Header>
-            <HeaderTop>
-              <GoBackButton onPress={goBack}>
-                <Icon name="chevron-left" />
-              </GoBackButton>
-              <HeaderTile>Seu Perfil</HeaderTile>
-            </HeaderTop>
-
-            <PhotoContainer>
-              <UserAvatar
-                source={
-                  user.avatar_url ? { uri: user.avatar_url } : avatarDefault
-                }
-              />
-            </PhotoContainer>
+            <GoBackButton onPress={goBack}>
+              <Icon name="chevron-left" />
+            </GoBackButton>
+            <HeaderTitle>Seu perfil</HeaderTitle>
+            <UserAvatar
+              source={
+                user.avatar_url ? { uri: user.avatar_url } : avatarDefault
+              }
+            />
           </Header>
           <Content>
-            <Logo source={logo} />
             <Title>Editar dados do perfil</Title>
             <InputControl
               autoCapitalize="none"
@@ -123,7 +118,11 @@ export const UserProfileEdit: React.FunctionComponent = () => {
               error={errors.email && errors.email.message?.toString()}
             />
 
-            <Button title="Entrar" onPress={handleSubmit(handleProfileEdit)} />
+            <Button
+              title="Salvar alterações"
+              onPress={handleSubmit(handleProfileEdit)}
+              disabled={!!errors.name || !!errors.email}
+            />
           </Content>
         </Container>
       </ScrollView>

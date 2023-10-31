@@ -8,6 +8,7 @@ import {
   GoBackButton,
   Header,
   HeaderTile,
+  HeaderTop,
   Icon,
   NameData,
   NameTitle,
@@ -31,19 +32,22 @@ export const UserProfile: React.FunctionComponent = () => {
   return (
     <Container>
       <Header>
-        <GoBackButton onPress={goBack}>
-          <Icon name="chevron-left" />
-        </GoBackButton>
+        <HeaderTop>
+          <GoBackButton onPress={goBack}>
+            <Icon name="chevron-left" />
+          </GoBackButton>
+        </HeaderTop>
         <HeaderTile>Seu Perfil</HeaderTile>
+        <PhotoContainer>
+          <UserAvatar
+            source={user.avatar_url ? { uri: user.avatar_url } : avatarDefault}
+          />
+          <PhotoButton>
+            <Icon name="camera" />
+          </PhotoButton>
+        </PhotoContainer>
       </Header>
-      <PhotoContainer>
-        <UserAvatar
-          source={user.avatar_url ? { uri: user.avatar_url } : avatarDefault}
-        />
-        <PhotoButton>
-          <Icon name="camera" />
-        </PhotoButton>
-      </PhotoContainer>
+
       <Content>
         <UserNameDetail>
           <NameTitle>NAME</NameTitle>
